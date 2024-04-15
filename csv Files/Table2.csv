@@ -1,6 +1,5 @@
-AChecker,"Result
-P/F",Known,,,Likely,,,Potential,,,Total Validator,,
-ID,,A,AA,AAA,A,AA,AAA,A,AA,AAA,A,AA,AAA
+AChecker,Result,,Known,,,Likely,,,Potential,,,Total Validator," "
+ID,P/F,A,AA,AAA,A,AA,AAA,A,AA,AAA,A,AA,AAA
 1,F,0,5,5,0,284,101,260,284,289,67,7,0
 2,P,0,0,0,0,0,0,35,37,39,4,1,0
 3,F,1,1,1,16,16,67,212,229,234,14,4,0
