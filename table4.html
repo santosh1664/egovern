@@ -46,7 +46,7 @@
 
             const fetchDataAndRenderTable = function() {
                 const limit = parseInt(limitSelect.value);
-                fetch('https://raw.githubusercontent.com/santosh1664/Dummy/main/Book1.csv')
+                fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table4.csv')
                     .then(response => response.text())
                     .then(csv => {
                         let rows = csv.split('\n').slice(0); // Slice from 0 to include header row
