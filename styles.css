@@ -50,9 +50,7 @@ td
     text-align: center;
 }
 
-tr:nth-child(even) {
-    background-color: #bcf2ff;
-}
+
 .tab5R:nth-child(even):hover
 {
     background-color: #bcf2ff;
