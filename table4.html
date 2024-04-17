@@ -21,7 +21,10 @@
             </ul>
         </nav>
     </header>
-    
+    <p style = "text-align:center;font-size:200%;font-weight:bold;">Table 4</p>
+    <p style = "text-align:center;font-size:150%;font-weight:200;"> Table 4 The average known Level AA errors according to WCAG 2.0-POUR principcles per education institution, including their college websites</p>
+    <p style = "text-align:center;font-size:150%;font-weight:200;">The error rate percentage and performance level are categorized as follows: high (0–33.3%), medium
+        (33.4–66.6%) and low (66.7–100.0%) P perceivable, O operable, U understandable, R robust.</p>
     <main>
         <div>
             <label for="limit-select">Show:</label>
@@ -49,36 +52,33 @@
                 fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table4.csv')
                     .then(response => response.text())
                     .then(csv => {
-                        let rows = csv.split('\n').slice(0); // Slice from 0 to include header row
+                        let rows = csv.split('\n').slice(1); // Slice from 0 to include header row
                         if (limit !== 0) {
                             rows = rows.slice(0, limit);
                         }
                         let tableHtml = '<table>';
                         let i = 0;
+                        tableHtml += '<thead>';
+                                tableHtml += '<tr>';
+                                    tableHtml += '<th style="text-align:center;">ID</th>';
+                                    tableHtml += '<th style="text-align:center;">Ranking</th>';
+                                    tableHtml += '<th style="text-align:center;">P</th>';
+                                    tableHtml += '<th style="text-align:center;">O</th>';
+                                    tableHtml += '<th style="text-align:center;">U</th>';
+                                    tableHtml += '<th style="text-align:center;">R</th>';
+                                    tableHtml += '<th style="text-align:center;">Error %</th>';
+                                    tableHtml += '<th style="text-align:center;">Performance</th>';
+                                tableHtml +='</tr>';
+                            tableHtml += '</thead>';
                         rows.forEach(row => {
-                            if(i == 0)
-                            {
                                 const columns = row.split(',');
-                                tableHtml += '<tr class=td0>';
+                                tableHtml += '<tr>';
                                 
                                 columns.forEach(column => {
                                 tableHtml += `<td>${column}</td>`;
                                 });
                                 tableHtml += '</tr>';
-                            }
-                            else
-                            {
-                                const columns = row.split(',');
-                                tableHtml += '<tr class=td1>';
-                            
-                                columns.forEach(column => {
-                                    tableHtml += `<td>${column}</td>`;
-                                });
-                                
-                                tableHtml += '</tr>';
-                                
-                            }
-                            i++;
+
                         });
                         tableHtml += '</table>';
                         tableContainer.innerHTML = tableHtml;

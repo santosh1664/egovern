@@ -21,7 +21,8 @@
             </ul>
         </nav>
     </header>
-    
+    <p style = "text-align:center;font-size:200%;font-weight:bold;">Table 8</p>
+    <p style = "text-align:center;font-size:150%;font-weight:200;"> Table 8 The WAVE tool error analysis</p>
     <main>
         <div>
             <label for="limit-select">Show:</label>
@@ -49,36 +50,26 @@
                 fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table8.csv')
                     .then(response => response.text())
                     .then(csv => {
-                        let rows = csv.split('\n').slice(0); // Slice from 0 to include header row
+                        let rows = csv.split('\n').slice(1); // Slice from 0 to include header row
                         if (limit !== 0) {
                             rows = rows.slice(0, limit);
                         }
                         let tableHtml = '<table>';
-                        let i = 0;
+                            tableHtml += '<thead>';
+                                tableHtml += '<th style="text-align:center;">Error Tyle</th>';
+                                tableHtml += '<th style="text-align:center;">No. Errors ID(1-32)</th>';
+                                tableHtml += '<th style="text-align:center;">No. Errors ID(33-64)</th>';
+                                tableHtml += '<th style="text-align:center;">Total</th>';
+                                tableHtml += '<th style="text-align:center;">Error Percentage</th>';
+                            tableHtml += '</thead>';
                         rows.forEach(row => {
-                            if(i == 0)
-                            {
                                 const columns = row.split(',');
-                                tableHtml += '<tr class=td0>';
+                                tableHtml += '<tr>';
                                 
                                 columns.forEach(column => {
                                 tableHtml += `<td>${column}</td>`;
                                 });
                                 tableHtml += '</tr>';
-                            }
-                            else
-                            {
-                                const columns = row.split(',');
-                                tableHtml += '<tr class=td1>';
-                            
-                                columns.forEach(column => {
-                                    tableHtml += `<td>${column}</td>`;
-                                });
-                                
-                                tableHtml += '</tr>';
-                                
-                            }
-                            i++;
                         });
                         tableHtml += '</table>';
                         tableContainer.innerHTML = tableHtml;

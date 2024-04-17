@@ -41,16 +41,32 @@ th, td {
     padding: 8px;
     text-align: left;
 }
+th
+{
+    background-color:#63ceff;
+}
+td
+{
+    text-align: center;
+}
 
 tr:nth-child(even) {
     background-color: #bcf2ff;
 }
-
+.tab5R:nth-child(even):hover
+{
+    background-color: #bcf2ff;
+}
+.tab5R:nth-child(odd):hover
+{
+    background-color: #ffffff;
+}
+.tab5R
+{
+    background-color:white;
+}
 tr:hover {
     background-color: var(--secondary-color);
-}
-tr:first-child:hover {
-    background-color:#63ceff;
 }
 
 nav {

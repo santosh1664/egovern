@@ -21,7 +21,8 @@
             </ul>
         </nav>
     </header>
-    
+    <p style = "text-align:center;font-size:200%;font-weight:bold;">Table 7</p>
+    <p style = "text-align:center;font-size:150%;font-weight:200;"> Table 7 The results of Total Validator, WAVE tool, HTML and CSS validation</p>
     <main>
         <div>
             <label for="limit-select">Show:</label>
@@ -49,36 +50,47 @@
                 fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table7.csv')
                     .then(response => response.text())
                     .then(csv => {
-                        let rows = csv.split('\n').slice(0); // Slice from 0 to include header row
+                        let rows = csv.split('\n').slice(2); // Slice from 0 to include header row
                         if (limit !== 0) {
                             rows = rows.slice(0, limit);
                         }
                         let tableHtml = '<table>';
                         let i = 0;
+                            tableHtml += '<thead>';
+                                tableHtml += '<tr>';
+                                    tableHtml += '<th style="text-align:center;border-bottom:none;">Website</th>';
+                                    tableHtml += '<th style="border-right:none;"></th>';
+                                    tableHtml += '<th style="border-left:none;border-right:none;"></th>';
+                                    tableHtml += '<th style="border-left:none;border-right:none;"></th>';
+                                    tableHtml += '<th style="text-align:Center;border-left:none;border-right:none;">WAVE</th>';
+                                    tableHtml += '<th style="border-left:none;border-right:none;"></th>';
+                                    tableHtml += '<th style="border-left:none;"></th>';
+                                    tableHtml += '<th style="text-align:center;border-bottom:none;">HTML</th>';
+                                    tableHtml += '<th style="text-align:center;border-bottom:none;">CSS</th>';
+                                tableHtml +='</tr>';
+                                tableHtml += '<tr>';
+                                    tableHtml += '<th style="text-align:center;border-top:none">ID</th>';
+                                    tableHtml += '<th style="text-align:center;">Errors</th>';
+                                    tableHtml += '<th style="text-align:center;">Alerts</th>';
+                                    tableHtml += '<th style="text-align:center;">Features</th>';
+                                    tableHtml += '<th style="text-align:center;">Structural Elements</th>';
+                                    tableHtml += '<th style="text-align:center;">HTML5 & ARIA</th>';
+                                    tableHtml += '<th style="text-align:center;">Contrast Errors</th>';
+                                    tableHtml += '<th style="text-align:center;border-top:none;">Val.</th>';
+                                    tableHtml += '<th style="text-align:center;border-top:none;">Val.</th>';
+                                tableHtml +='</tr>';
+                            tableHtml += '</thead>';
+                            
+
                         rows.forEach(row => {
-                            if(i == 0)
-                            {
                                 const columns = row.split(',');
-                                tableHtml += '<tr class=td0>';
+                                tableHtml += '<tr>';
                                 
                                 columns.forEach(column => {
                                 tableHtml += `<td>${column}</td>`;
                                 });
                                 tableHtml += '</tr>';
-                            }
-                            else
-                            {
-                                const columns = row.split(',');
-                                tableHtml += '<tr class=td1>';
-                            
-                                columns.forEach(column => {
-                                    tableHtml += `<td>${column}</td>`;
-                                });
-                                
-                                tableHtml += '</tr>';
-                                
-                            }
-                            i++;
+
                         });
                         tableHtml += '</table>';
                         tableContainer.innerHTML = tableHtml;

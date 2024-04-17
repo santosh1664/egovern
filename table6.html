@@ -21,7 +21,9 @@
             </ul>
         </nav>
     </header>
-    
+    <p style = "text-align:center;font-size:200%;font-weight:bold;">Table 6</p>
+    <p style = "text-align:center;font-size:150%;font-weight:200;"> Table 6 A list of the most common known accessibility problems according to 
+        AChecker tool Level AA</p>
     <main>
         <div>
             <label for="limit-select">Show:</label>
@@ -46,42 +48,143 @@
 
             const fetchDataAndRenderTable = function() {
                 const limit = parseInt(limitSelect.value);
-                fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table6.csv')
+                fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table5.csv')
                     .then(response => response.text())
                     .then(csv => {
-                        let rows = csv.split('\n').slice(0); // Slice from 0 to include header row
+                        
+                        let rows = csv.split('\n').slice(1); // Slice from 0 to include header row
                         if (limit !== 0) {
                             rows = rows.slice(0, limit);
                         }
                         let tableHtml = '<table>';
-                        let i = 0;
+                            tableHtml += '<tr class="tab5R">';
+                                tableHtml += '<td>';
+                                    tableHtml += '<button class="dropdown" style="border:none;">Perceivable</button>';
+                                    tableHtml += '<div class="contents" style="display:none; text-align:left;background-color:white;">';
+                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
+                                        let j = 0;
+                                        rows.forEach(row => {
+                                            if( j <= 8)
+                                            {
+                                                const columns = row.split(',');
+                                                tableHtml += '<p>';
+                                                columns.forEach(column => {
+                                                tableHtml += `${column}\t`;
+                                                });
+                                                tableHtml += '</p>';
+                                            }
+                                            j++;
+                                        });
+                                    tableHtml += '</div>';
+                                tableHtml += '</td>';
+                            tableHtml += '</tr>';
+                            tableHtml += '<tr class="tab5R">';
+                                tableHtml += '<td>';
+                                    tableHtml += '<button class="dropdown">Operable</button>';
+                                    tableHtml += '<div class="contents" style="display:none;text-align:left;">';
+                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
+                                        let rows1 = csv.split('\n').slice(10); // Slice from 0 to include header row
+                                        let k = 0;
+                                        rows1.forEach(row1 => {
+                                            if( k <= 5)
+                                            {
+                                                const columns1 = row1.split(',');
+                                                tableHtml += '<p>';
+                                                columns1.forEach(column1 => {
+                                                tableHtml += `${column1}\t`;
+                                                });
+                                                tableHtml += '</p>';
+                                            }
+                                            k++;
+                                        });
+                                    tableHtml += '</div>';
+                                tableHtml += '</td>';
+                            tableHtml += '</tr>';
+                            tableHtml += '<tr class="tab5R">';
+                                tableHtml += '<td>';
+                                    tableHtml += '<button class="dropdown">Understandable</button>';
+                                    tableHtml += '<div class="contents" style="display:none;text-align:left;">';
+                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
+                                        let rows2 = csv.split('\n').slice(16); // Slice from 0 to include header row
+                                        let l = 0;
+                                        rows2.forEach(row2 => {
+                                            if( l <= 3)
+                                            {
+                                                const columns2 = row2.split(',');
+                                                tableHtml += '<p>';
+                                                columns2.forEach(column2 => {
+                                                tableHtml += `${column2}\t`;
+                                                });
+                                                tableHtml += '</p>';
+                                            }
+                                            l++;
+                                        });
+                                    tableHtml += '</div>';
+                                tableHtml += '</td>';
+                            tableHtml += '</tr>';
+                            tableHtml += '<tr class="tab5R">';
+                                tableHtml += '<td>';
+                                    tableHtml += '<button class="dropdown">Robust</button>';
+                                    tableHtml += '<div class="contents" style="display:none;text-align:center;">';
+                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
+                                        let rows3 = csv.split('\n').slice(20); // Slice from 0 to include header row
+                                        let m = 0;
+                                        rows3.forEach(row3 => {
+                                            if( m <= 3)
+                                            {
+                                                const columns3 = row3.split(',');
+                                                tableHtml += '<p>';
+                                                columns3.forEach(column3 => {
+                                                tableHtml += `${column3}\t`;
+                                                });
+                                                tableHtml += '</p>';
+                                            }
+                                            m++;
+                                        });
+                                    tableHtml += '</div>';
+                                tableHtml += '</td>';
+                            tableHtml += '</tr>';
+                            tableHtml += '</table>';
+                            tableContainer.innerHTML = tableHtml;
+
+                            var dropdowns = document.getElementsByClassName("dropdown");
+
+// Loop through all dropdown buttons to add event listener
+for (var a = 0; a < dropdowns.length; a++) {
+    dropdowns[a].addEventListener("click", function() {
+        // Toggle the visibility of the next sibling element, which is the dropdown content
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+}
+                        /*
+                        let tableHtml = '<table>';
+                            tableHtml += '<thead>';
+                                tableHtml += '<th style="text-align:center;">Category</th>';
+                                tableHtml += '<th style="text-align:center;">Guidline #</th>';
+                                tableHtml += '<th style="text-align:center;">Success Criteria</th>';
+                                tableHtml += '<th style="text-align:center;">No. of errors ID(1-32)</th>';
+                                tableHtml += '<th style="text-align:center;">No. of errors ID(33-64)</th>';
+                                tableHtml += '<th style="text-align:center;">Total Errors</th>';
+                            tableHtml += '</thead>';
                         rows.forEach(row => {
-                            if(i == 0)
-                            {
+                           
                                 const columns = row.split(',');
-                                tableHtml += '<tr class=td0>';
-                                
-                                columns.forEach(column => {
-                                tableHtml += `<td>${column}</td>`;
-                                });
-                                tableHtml += '</tr>';
-                            }
-                            else
-                            {
-                                const columns = row.split(',');
-                                tableHtml += '<tr class=td1>';
+                                tableHtml += '<tr>';
                             
                                 columns.forEach(column => {
                                     tableHtml += `<td>${column}</td>`;
                                 });
                                 
                                 tableHtml += '</tr>';
-                                
-                            }
-                            i++;
                         });
                         tableHtml += '</table>';
                         tableContainer.innerHTML = tableHtml;
+                        */
                     })
                     .catch(error => console.error('Error fetching CSV:', error));
             };
