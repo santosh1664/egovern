@@ -32,10 +32,6 @@ h1 {
   font-size: 35px;
 }
 
-input[type="file"]:hover,
-button:hover {
-    background-color: var(--secondary-color);
-}
 
 table {
     border-collapse: collapse;

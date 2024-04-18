@@ -20,11 +20,13 @@ body {
 h1 {
     text-align: center;
     color: var(--text-color);
+    justify-content: justify;
 }
 
-input[type="file"]:hover,
-button:hover {
-    background-color: var(--secondary-color);
+.p {
+    text-align: justify;
+    color: var(--text-color);
+    font-size: 35px;
 }
 
 table {
@@ -68,10 +70,8 @@ tr:hover {
 }
 
 nav {
-    background-color: #007bb5;
+    background-color: #53d1d7;
     color: #A0E9FF;
-    
-    padding: 0px 0px;
     margin-bottom: 0px;
     display: flex;
     align-items: center;
@@ -93,9 +93,9 @@ li {
 }
 a {
     text-decoration: none;
-    color: #FFFFFF;
-    font-size: 18px;
-    padding: 15px;
+    color: #090909;
+    font-size: 13.5px;
+ display: flex;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -106,10 +106,8 @@ a {
 }
 a:hover {
     background-color: var(--secondary-color);
-    background-color: #66cfd8;
-    /* padding:3px;*/
-    align-items: center;
-    justify-content: center;
+    background-color: #e9f2f3;
+    padding:10;
 }
 
 .td0
