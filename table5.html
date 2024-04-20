@@ -42,7 +42,30 @@
                 <option value="64"selected>All</option>
             </select>
         </div>
-        <div id="table-container"></div>
+        <div id="Button1">
+            <button class="dropdown" style="width:100%;height:100px;font-size:large;font-weight:bold;">Perceivable</button>
+            <div class="contents" style="display:none; text-align:left;background-color:white;">
+                <div id="table-container1"></div>
+            </div>
+        </div>
+        <div id="Button2">
+            <button class="dropdown" style="width:100%;height:100px;font-size:large;font-weight:bold;">Operable</button>
+            <div class="contents" style="display:none; text-align:left;background-color:white;">
+                <div id="table-container2"></div>
+            </div>
+        </div>
+        <div id="Button3">
+            <button class="dropdown" style="width:100%;height:100px;font-size:large;font-weight:bold;">Understandable</button>
+            <div class="contents" style="display:none; text-align:left;background-color:white;">
+                <div id="table-container3"></div>
+            </div>
+        </div>
+        <div id="Button4">
+            <button class="dropdown" style="width:100%;height:100px;font-size:large;font-weight:bold;">Robust</button>
+            <div class="contents" style="display:none; text-align:left;background-color:white;">
+                <div id="table-container4"></div>
+            </div>
+        </div>
     </main>
 
 
@@ -50,124 +73,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const limitSelect = document.getElementById('limit-select');
-            const tableContainer = document.getElementById('table-container');
+            const tableContainer = document.getElementById('table-container1');
+            const tableContainer2 = document.getElementById('table-container2');
+            const tableContainer3 = document.getElementById('table-container3');
+            const tableContainer4 = document.getElementById('table-container4');
 
             const fetchDataAndRenderTable = function() {
                 const limit = parseInt(limitSelect.value);
                 fetch('https://raw.githubusercontent.com/santosh1664/egovern/csv/csv%20Files/Table5.csv')
                     .then(response => response.text())
-                    .then(csv => {
-                        
+                    .then(csv => 
+                    {    
                         let rows = csv.split('\n').slice(1); // Slice from 0 to include header row
                         if (limit !== 0) {
                             rows = rows.slice(0, limit);
                         }
-                        let tableHtml = '<table>';
-                            tableHtml += '<tr class="tab5R">';
-                                tableHtml += '<td>';
-                                    tableHtml += '<button class="dropdown" style="border:none;">Perceivable</button>';
-                                    tableHtml += '<div class="contents" style="display:none; text-align:left;background-color:white;">';
-                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
-                                        let j = 0;
-                                        rows.forEach(row => {
-                                            if( j <= 8)
-                                            {
-                                                const columns = row.split(',');
-                                                tableHtml += '<p>';
-                                                columns.forEach(column => {
-                                                tableHtml += `${column}\t`;
-                                                });
-                                                tableHtml += '</p>';
-                                            }
-                                            j++;
-                                        });
-                                    tableHtml += '</div>';
-                                tableHtml += '</td>';
-                            tableHtml += '</tr>';
-                            tableHtml += '<tr class="tab5R">';
-                                tableHtml += '<td>';
-                                    tableHtml += '<button class="dropdown">Operable</button>';
-                                    tableHtml += '<div class="contents" style="display:none;text-align:left;">';
-                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
-                                        let rows1 = csv.split('\n').slice(10); // Slice from 0 to include header row
-                                        let k = 0;
-                                        rows1.forEach(row1 => {
-                                            if( k <= 5)
-                                            {
-                                                const columns1 = row1.split(',');
-                                                tableHtml += '<p>';
-                                                columns1.forEach(column1 => {
-                                                tableHtml += `${column1}\t`;
-                                                });
-                                                tableHtml += '</p>';
-                                            }
-                                            k++;
-                                        });
-                                    tableHtml += '</div>';
-                                tableHtml += '</td>';
-                            tableHtml += '</tr>';
-                            tableHtml += '<tr class="tab5R">';
-                                tableHtml += '<td>';
-                                    tableHtml += '<button class="dropdown">Understandable</button>';
-                                    tableHtml += '<div class="contents" style="display:none;text-align:left;">';
-                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
-                                        let rows2 = csv.split('\n').slice(16); // Slice from 0 to include header row
-                                        let l = 0;
-                                        rows2.forEach(row2 => {
-                                            if( l <= 3)
-                                            {
-                                                const columns2 = row2.split(',');
-                                                tableHtml += '<p>';
-                                                columns2.forEach(column2 => {
-                                                tableHtml += `${column2}\t`;
-                                                });
-                                                tableHtml += '</p>';
-                                            }
-                                            l++;
-                                        });
-                                    tableHtml += '</div>';
-                                tableHtml += '</td>';
-                            tableHtml += '</tr>';
-                            tableHtml += '<tr class="tab5R">';
-                                tableHtml += '<td>';
-                                    tableHtml += '<button class="dropdown">Robust</button>';
-                                    tableHtml += '<div class="contents" style="display:none;text-align:center;">';
-                                        tableHtml += '<p><b><u>Category</u></b>\t<u><b>Guideline</u></b>\t<u><b>Success Criteria</u></b>\t<u><b>No. of errors(1-32)</u></b>\t<u><b>No. of errors(33-64)</u></b>\t<u><b>Total errors</u></b></p>';
-                                        let rows3 = csv.split('\n').slice(20); // Slice from 0 to include header row
-                                        let m = 0;
-                                        rows3.forEach(row3 => {
-                                            if( m <= 3)
-                                            {
-                                                const columns3 = row3.split(',');
-                                                tableHtml += '<p>';
-                                                columns3.forEach(column3 => {
-                                                tableHtml += `${column3}\t`;
-                                                });
-                                                tableHtml += '</p>';
-                                            }
-                                            m++;
-                                        });
-                                    tableHtml += '</div>';
-                                tableHtml += '</td>';
-                            tableHtml += '</tr>';
-                            tableHtml += '</table>';
-                            tableContainer.innerHTML = tableHtml;
-
-                            var dropdowns = document.getElementsByClassName("dropdown");
-
-// Loop through all dropdown buttons to add event listener
-for (var a = 0; a < dropdowns.length; a++) {
-    dropdowns[a].addEventListener("click", function() {
-        // Toggle the visibility of the next sibling element, which is the dropdown content
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-            content.style.display = "none";
-        } else {
-            content.style.display = "block";
-        }
-    });
-}
-                        /*
                         let tableHtml = '<table>';
                             tableHtml += '<thead>';
                                 tableHtml += '<th style="text-align:center;">Category</th>';
@@ -177,22 +97,132 @@ for (var a = 0; a < dropdowns.length; a++) {
                                 tableHtml += '<th style="text-align:center;">No. of errors ID(33-64)</th>';
                                 tableHtml += '<th style="text-align:center;">Total Errors</th>';
                             tableHtml += '</thead>';
-                        rows.forEach(row => {
-                           
+                        let j = 0;
+                        rows.forEach(row => 
+                        {
+                            if(j <= 8)
+                            {
                                 const columns = row.split(',');
-                                tableHtml += '<tr>';
-                            
+                                tableHtml += '<tr>';    
                                 columns.forEach(column => {
                                     tableHtml += `<td>${column}</td>`;
-                                });
-                                
+                                });            
                                 tableHtml += '</tr>';
+                            }
+                            j++;
                         });
                         tableHtml += '</table>';
                         tableContainer.innerHTML = tableHtml;
-                        */
+
+                        let rows2 = csv.split('\n').slice(10); // Slice from 0 to include header row
+                        if (limit !== 0) 
+                        {
+                            rows2 = rows2.slice(0, limit);
+                        }
+                        let tableHtml2 = '<table>';
+                            tableHtml2 += '<thead>';
+                                tableHtml2 += '<th style="text-align:center;">Category</th>';
+                                tableHtml2 += '<th style="text-align:center;">Guidline #</th>';
+                                tableHtml2 += '<th style="text-align:center;">Success Criteria</th>';
+                                tableHtml2 += '<th style="text-align:center;">No. of errors ID(1-32)</th>';
+                                tableHtml2 += '<th style="text-align:center;">No. of errors ID(33-64)</th>';
+                                tableHtml2 += '<th style="text-align:center;">Total Errors</th>';
+                            tableHtml2 += '</thead>';
+                        let k = 0;
+                        rows2.forEach(row2 => 
+                        {
+                            if(k <= 5)
+                            {
+                                const columns2 = row2.split(',');
+                                tableHtml2 += '<tr>';
+                            
+                                columns2.forEach(column2 => {
+                                    tableHtml2 += `<td>${column2}</td>`;
+                                });            
+                                tableHtml2 += '</tr>';
+                            }
+                            k++;
+                        });
+                        tableHtml2 += '</table>';
+                        tableContainer2.innerHTML = tableHtml2;
+
+                        let rows3 = csv.split('\n').slice(16); // Slice from 0 to include header row
+                        if (limit !== 0) {
+                            rows3 = rows3.slice(0, limit);
+                        }
+                        let tableHtml3 = '<table>';
+                            tableHtml3 += '<thead>';
+                                tableHtml3 += '<th style="text-align:center;">Category</th>';
+                                tableHtml3 += '<th style="text-align:center;">Guidline #</th>';
+                                tableHtml3 += '<th style="text-align:center;">Success Criteria</th>';
+                                tableHtml3 += '<th style="text-align:center;">No. of errors ID(1-32)</th>';
+                                tableHtml3 += '<th style="text-align:center;">No. of errors ID(33-64)</th>';
+                                tableHtml3 += '<th style="text-align:center;">Total Errors</th>';
+                            tableHtml3 += '</thead>';
+                            let l = 0;
+                        rows3.forEach(row3 => 
+                        {
+                            if(l <= 3)
+                            {
+                                const columns3 = row3.split(',');
+                                tableHtml3 += '<tr>';            
+                                columns3.forEach(column3 => 
+                                {
+                                    tableHtml3 += `<td>${column3}</td>`;
+                                });                
+                                tableHtml3 += '</tr>';
+                            }
+                            l++;
+                        });
+                        tableHtml3 += '</table>';
+                        tableContainer3.innerHTML = tableHtml3;
+
+                        let rows4 = csv.split('\n').slice(20); // Slice from 0 to include header row
+                        if (limit !== 0) {
+                            rows4 = rows4.slice(0, limit);
+                        }
+                        let tableHtml4 = '<table>';
+                            tableHtml4 += '<thead>';
+                                tableHtml4 += '<th style="text-align:center;">Category</th>';
+                                tableHtml4 += '<th style="text-align:center;">Guidline #</th>';
+                                tableHtml4 += '<th style="text-align:center;">Success Criteria</th>';
+                                tableHtml4 += '<th style="text-align:center;">No. of errors ID(1-32)</th>';
+                                tableHtml4 += '<th style="text-align:center;">No. of errors ID(33-64)</th>';
+                                tableHtml4 += '<th style="text-align:center;">Total Errors</th>';
+                            tableHtml4 += '</thead>';
+                            let m = 0;
+                        rows4.forEach(row4 => 
+                        {
+                            if(m <= 0)
+                            {
+                                const columns4 = row4.split(',');
+                                tableHtml4 += '<tr>';            
+                                columns4.forEach(column4 => 
+                                {
+                                    tableHtml4 += `<td>${column4}</td>`;
+                                });                
+                                tableHtml4 += '</tr>';
+                            }    
+                            m++;
+                        });
+                        tableHtml4 += '</table>';
+                        tableContainer4.innerHTML = tableHtml4;
+
+                        var dropdowns = document.getElementsByClassName("dropdown");
+                        for (var a = 0; a < dropdowns.length; a++) 
+                        {
+                            dropdowns[a].addEventListener("click", function() {
+                            // Toggle the visibility of the next sibling element, which is the dropdown content
+                            var content = this.nextElementSibling;
+                            if (content.style.display === "block") {
+                                content.style.display = "none";
+                            } else {
+                                content.style.display = "block";
+                            }
+                        });
+                        }
                     })
-                    .catch(error => console.error('Error fetching CSV:', error));
+                .catch(error => console.error('Error fetching CSV:', error));
             };
 
             // Initial data fetch and table rendering
