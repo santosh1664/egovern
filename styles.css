@@ -55,21 +55,10 @@ td
 tr:nth-child(even) {
     background-color: #bcf2ff;
 }
-.tab5R:nth-child(even):hover
-{
-    background-color: #bcf2ff;
-}
-.tab5R:nth-child(odd):hover
-{
-    background-color: #ffffff;
-}
-.tab5R
-{
-    background-color:white;
-}
-tr:hover {
+
+/*tr:hover {
     background-color: var(--secondary-color);
-}
+}*/
 
 nav {
     background-color: #53d1d7;
@@ -97,7 +86,7 @@ a {
     text-decoration: none;
     color: #090909;
     font-size: 13.5px;
- display: flex;
+    display: flex;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -110,16 +99,9 @@ a:hover {
     background-color: var(--secondary-color);
     background-color: #e9f2f3;
     padding:10;
+    text-decoration: underline;
 }
 
-.td0
-{
-    background-color:#63ceff;
-}
-.td1
-{
-    background-color:#FFFFFF;
-}
 #horizontal
 {
     height:3px;

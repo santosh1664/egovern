@@ -55,46 +55,36 @@
                 fetch('https://raw.githubusercontent.com/santosh1664/Dummy/main/Book1.csv')
                     .then(response => response.text())
                     .then(csv => {
-                        let rows = csv.split('\n').slice(0); // Slice from 0 to include header row
+                        let rows = csv.split('\n').slice(1); // Slice from 0 to include header row
                         if (limit !== 0) {
-                            rows = rows.slice(1, limit);
+                            rows = rows.slice(0, limit);
                         }
                         let tableHtml = '<table>';
-                        let i = 0;
-                        let j = 0;
+                            tableHtml += '<thead>';
+                                tableHtml += '<tr>';
+                                    tableHtml += '<th style="text-align:center;">No.</th>';
+                                    tableHtml += '<th style="text-align:center;">Government Name</th>';
+                                    tableHtml += '<th style="text-align:center;">Website URL</th>';
+                                    tableHtml += '<th style="text-align:center;">Government Type</th>';
+                                    tableHtml += '<th style="text-align:center;">ID</th>';
+                                tableHtml += '</tr>';
+                            tableHtml += '</thead>';
                         rows.forEach(row => {
                             j=0;
-                            if(i == 0)
+                            const columns = row.split(',');
+                            tableHtml += '<tr>';
+                            columns.forEach(column => {
+                            if(j == 2)
                             {
-                                const columns = row.split(',');
-                                tableHtml += '<tr class=td0>';
-                                
-                                columns.forEach(column => {
-                                tableHtml += `<td>${column}</td>`;
-                                });
-                                tableHtml += '</tr>';
+                                tableHtml += `<td><a class="links" href="${column}">${column}</a></td>`;
                             }
                             else
                             {
-                                const columns = row.split(',');
-                                tableHtml += '<tr class=td1>';
-                            
-                                columns.forEach(column => {
-                                if(j == 2)
-                                {
-                                    tableHtml += `<td><a class="links" href="${column}">${column}</a></td>`;
-                                }
-                                else
-                                {
-                                    tableHtml += `<td>${column}</td>`;
-                                }
-                                j++;
-                                });
-                                
-                                tableHtml += '</tr>';
-                                
+                                tableHtml += `<td>${column}</td>`;
                             }
-                            i++;
+                            j++;
+                            });
+                            tableHtml += '</tr>';    
                         });
                         tableHtml += '</table>';
                         tableContainer.innerHTML = tableHtml;
