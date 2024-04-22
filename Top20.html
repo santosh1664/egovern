@@ -50,7 +50,7 @@
                 fetch('https://raw.githubusercontent.com/santosh1664/Dummy/main/Book1.csv')
                     .then(response => response.text())
                     .then(csv => {
-                        const rows = csv.split('\n');
+                        const rows = csv.split('\n').slice(1);
                         totalPages = Math.ceil((rows.length - 1) / rowsPerPage); // Exclude header row from count
                         let startIndex = (currentPage - 1) * rowsPerPage;
                         let endIndex = startIndex + rowsPerPage;
@@ -60,21 +60,31 @@
                             endIndex = rows.length - 1; // Exclude header row
                         }
                         const rowsToShow = rows.slice(startIndex, endIndex + 0); // Include header row
-
-                        let tableHtml = '<table>';
-                        if (headerRow === '') {
-                            headerRow = rows[0];
-                            tableHtml += '<tr>';
-                            headerRow.split(',').forEach(header => {
-                                tableHtml += `<th>${header}</th>`;
-                            });
-                            tableHtml += '</tr>';
-                        }
-                        rowsToShow.slice(1).forEach(row => { // Skip the first row (header)
+                        let tableHtml = '';
+                         tableHtml = '<table>';
+                            tableHtml += '<thead>';
+                                tableHtml += '<tr>';
+                                    tableHtml += '<th style="text-align:center;">No.</th>';
+                                    tableHtml += '<th style="text-align:center;">Government Name</th>';
+                                    tableHtml += '<th style="text-align:center;">Website URL</th>';
+                                    tableHtml += '<th style="text-align:center;">Government Type</th>';
+                                    tableHtml += '<th style="text-align:center;">ID</th>';
+                            tableHtml += '</thead>';
+                        
+                        rowsToShow.slice(0).forEach(row => { // Skip the first row (header)
+                            let j = 0;
                             const columns = row.split(',');
                             tableHtml += '<tr>';
                             columns.forEach(column => {
-                                tableHtml += `<td>${column}</td>`;
+                                if(j == 2)
+                                {
+                                    tableHtml += `<td><a class="links" style="text-align:center;" href="${column}">${column}</a></td>`;
+                                }
+                                else
+                                {
+                                    tableHtml += `<td>${column}</td>`;
+                                }
+                                j++;
                             });
                             tableHtml += '</tr>';
                         });
